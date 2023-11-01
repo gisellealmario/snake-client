@@ -20,6 +20,10 @@ const handleUserInput = function (key) {
     connection.write("Move: down"); // Send "Move: down" to the server
   } else if (key === 'd') {
     connection.write("Move: right"); // Send "Move: right" to the server
+  } else if (key === '1') {
+    connection.write("Say: Hello, everyone!"); // Send a canned message to the server
+  } else if (key === '2') {
+    connection.write("Say: How's it going?"); // Send another canned message
   }
 };
 
