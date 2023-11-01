@@ -1,9 +1,10 @@
 const net = require("net");
+const { IP, PORT } = require("./constants"); // Import IP and PORT from your constants file
 
 const connect = function() {
   const conn = net.createConnection({
-    host: "165.227.47.243 ",
-    port: 50541,
+    host: IP, // Use IP from constants
+    port: PORT, // Use PORT from constants
   });
 
   conn.on("connect", () => {
