@@ -1,32 +1,25 @@
+let connection;
 
-const setupInput = function () {
+const setupInput = (conn) => {
+  connection = conn; // Assign the connection object to the variable in the outer scope
   const stdin = process.stdin;
+  stdin.on("data", handleUserInput);
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
-  stdin.on("data", handleUserInput);
-  return stdin;
 };
 
-let conn;
-
 const handleUserInput = function (key) {
-  // Check for specific user input and send corresponding commands to the server
   if (key === '\u0003') {
-    // Ctrl + C to exit the game
-    process.exit();
+    process.exit(); // Ctrl + C to exit the game
   } else if (key === 'w') {
-    // 'w' key for moving the snake up
-    conn.write("Move: up");
-  } else if (key === 's') {
-    // 's' key for moving the snake down
-    conn.write("Move: down");
+    connection.write("Move: up"); // Send "Move: up" to the server
   } else if (key === 'a') {
-    // 'a' key for moving the snake left
-    conn.write("Move: left");
+    connection.write("Move: left"); // Send "Move: left" to the server
+  } else if (key === 's') {
+    connection.write("Move: down"); // Send "Move: down" to the server
   } else if (key === 'd') {
-    // 'd' key for moving the snake right
-    conn.write("Move: right");
+    connection.write("Move: right"); // Send "Move: right" to the server
   }
 };
 
